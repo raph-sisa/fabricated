@@ -1,22 +1,3 @@
-const PIXEL = 4
-
-function rect(x: number, y: number, w: number, h: number, fill: string) {
-  return (
-    <rect
-      key={`${x}-${y}-${fill}`}
-      x={x * PIXEL}
-      y={y * PIXEL}
-      width={w * PIXEL}
-      height={h * PIXEL}
-      fill={fill}
-    />
-  )
-}
-
-function pixel(x: number, y: number, fill: string) {
-  return rect(x, y, 1, 1, fill)
-}
-
 export function Breadboard({ className = '' }: { className?: string }) {
   const board = '#e8e0d0'
   const hole = '#8b8b9e'

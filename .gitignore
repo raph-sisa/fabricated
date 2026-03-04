@@ -26,3 +26,4 @@ dist-ssr
 # Planning docs
 *.docx
 *.pdf
+.vercel

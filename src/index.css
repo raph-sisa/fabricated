@@ -25,6 +25,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Terminal cursor blink */
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
@@ -32,4 +33,55 @@ body {
 
 .cursor-blink {
   animation: blink 1s step-end infinite;
+}
+
+/* LED glow pulse — green */
+@keyframes led-glow {
+  0%, 100% { opacity: 0.15; r: 5; }
+  50% { opacity: 0.35; r: 7; }
+}
+
+.animate-led-glow {
+  animation: led-glow 2.5s ease-in-out infinite;
+}
+
+/* LED glow pulse — orange */
+@keyframes led-glow-orange {
+  0%, 100% { opacity: 0.15; r: 5; }
+  50% { opacity: 0.3; r: 7; }
+}
+
+.animate-led-glow-orange {
+  animation: led-glow-orange 3s ease-in-out infinite;
+}
+
+/* Robot floating idle */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.animate-float {
+  animation: float 3.5s ease-in-out infinite;
+}
+
+/* Robot eye blink */
+@keyframes eye-blink {
+  0%, 94%, 100% { transform: scaleY(1); }
+  96% { transform: scaleY(0.1); }
+}
+
+.animate-eye-blink {
+  animation: eye-blink 4s ease-in-out infinite;
+  transform-origin: center;
+}
+
+/* Terminal cursor in robot mouth */
+@keyframes terminal-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.animate-terminal-cursor {
+  animation: terminal-cursor 1.2s step-end infinite;
 }

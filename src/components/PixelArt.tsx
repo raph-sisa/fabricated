@@ -28,9 +28,9 @@ export function Breadboard({ className = '' }: { className?: string }) {
       {/* Wires */}
       <line x1="23" y1="17" x2="23" y2="47" stroke={wire} strokeWidth="2" />
       <line x1="55" y1="25" x2="55" y2="55" stroke={wireBlue} strokeWidth="2" />
-      {/* LED */}
+      {/* LED with glow animation */}
+      <circle cx="39" cy="17" r="5" fill="#4ade80" opacity="0.2" className="animate-led-glow" />
       <circle cx="39" cy="17" r="3" fill="#4ade80" opacity="0.9" />
-      <circle cx="39" cy="17" r="5" fill="#4ade80" opacity="0.2" />
     </svg>
   )
 }
@@ -66,9 +66,9 @@ export function Arduino({ className = '' }: { className?: string }) {
       {Array.from({ length: 10 }).map((_, i) => (
         <rect key={`bot-pin-${i}`} x={14 + i * 7} y={96} width={4} height={4} fill={pin} />
       ))}
-      {/* Power LED */}
+      {/* Power LED with glow */}
+      <circle cx="20" cy="40" r="5" fill="#4ade80" opacity="0.15" className="animate-led-glow" />
       <circle cx="20" cy="40" r="3" fill="#4ade80" opacity="0.9" />
-      <circle cx="20" cy="40" r="5" fill="#4ade80" opacity="0.15" />
       {/* Reset button */}
       <rect x="68" y="34" width="10" height="8" rx="1" fill="#c8c8c8" />
       <rect x="70" y="36" width="6" height="4" rx="1" fill="#999" />
@@ -110,9 +110,9 @@ export function PCB({ className = '' }: { className?: string }) {
       {/* Capacitor */}
       <circle cx="40" cy="55" r="5" fill={comp} />
       <text x="37.5" y="57.5" fontSize="5" fill="#888">C</text>
-      {/* LED */}
+      {/* LED with glow */}
+      <circle cx="80" cy="58" r="5" fill="#e8662a" opacity="0.15" className="animate-led-glow-orange" />
       <circle cx="80" cy="58" r="3" fill="#e8662a" opacity="0.9" />
-      <circle cx="80" cy="58" r="5" fill="#e8662a" opacity="0.15" />
     </svg>
   )
 }
@@ -124,20 +124,23 @@ export function ClaudeRobot({ className = '' }: { className?: string }) {
   const dark = '#1a1a2e'
 
   return (
-    <svg viewBox="0 0 80 96" className={className} aria-label="Claude Code robot pixel art">
+    <svg viewBox="0 0 80 96" className={`${className} animate-float`} aria-label="Claude Code robot pixel art">
       {/* Antenna */}
       <rect x="36" y="0" width="8" height="4" fill={accent} />
       <rect x="38" y="4" width="4" height="8" fill={body} />
+      {/* Antenna light */}
+      <circle cx="40" cy="2" r="3" fill="#4ade80" opacity="0.3" className="animate-led-glow" />
+      <circle cx="40" cy="2" r="1.5" fill="#4ade80" opacity="0.9" />
       {/* Head */}
       <rect x="16" y="12" width="48" height="36" rx="4" fill={body} />
-      {/* Eyes */}
+      {/* Eyes — with blink animation */}
       <rect x="26" y="22" width="8" height="10" rx="2" fill={eye} />
       <rect x="46" y="22" width="8" height="10" rx="2" fill={eye} />
-      <rect x="28" y="26" width="4" height="4" rx="1" fill={dark} />
-      <rect x="48" y="26" width="4" height="4" rx="1" fill={dark} />
+      <rect x="28" y="26" width="4" height="4" rx="1" fill={dark} className="animate-eye-blink" />
+      <rect x="48" y="26" width="4" height="4" rx="1" fill={dark} className="animate-eye-blink" />
       {/* Mouth / terminal screen */}
       <rect x="24" y="36" width="32" height="8" rx="2" fill={dark} />
-      <rect x="27" y="38" width="3" height="4" fill="#4ade80" />
+      <rect x="27" y="38" width="3" height="4" fill="#4ade80" className="animate-terminal-cursor" />
       <rect x="32" y="38" width="8" height="4" fill="#4ade80" opacity="0.5" />
       <rect x="42" y="38" width="5" height="4" fill="#4ade80" opacity="0.3" />
       {/* Body */}
@@ -158,6 +161,33 @@ export function ClaudeRobot({ className = '' }: { className?: string }) {
       {/* Feet */}
       <rect x="22" y="88" width="14" height="6" rx="2" fill={body} />
       <rect x="44" y="88" width="14" height="6" rx="2" fill={body} />
+    </svg>
+  )
+}
+
+// Small LED accent for use throughout the page
+export function LEDAccent({
+  color = 'green',
+  size = 6,
+  className = '',
+}: {
+  color?: 'green' | 'orange'
+  size?: number
+  className?: string
+}) {
+  const fill = color === 'green' ? '#4ade80' : '#e8662a'
+  const glowClass = color === 'green' ? 'animate-led-glow' : 'animate-led-glow-orange'
+
+  return (
+    <svg
+      viewBox="0 0 12 12"
+      width={size}
+      height={size}
+      className={className}
+      aria-hidden="true"
+    >
+      <circle cx="6" cy="6" r="5" fill={fill} opacity="0.2" className={glowClass} />
+      <circle cx="6" cy="6" r="3" fill={fill} opacity="0.9" />
     </svg>
   )
 }

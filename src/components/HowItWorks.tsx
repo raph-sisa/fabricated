@@ -1,3 +1,6 @@
+import { motion } from 'framer-motion'
+import ScrollReveal, { StaggerContainer, StaggerItem } from './ScrollReveal'
+
 const steps = [
   {
     number: '01',
@@ -24,37 +27,49 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="py-20 px-4">
+    <section className="py-24 md:py-32 px-4">
       <div className="max-w-3xl mx-auto">
         {/* Section header */}
-        <div className="font-mono text-muted text-sm mb-2">
-          <span className="text-green">$</span> cat how-it-works.md
-        </div>
-        <div className="border-t border-surface mb-10" />
+        <ScrollReveal>
+          <div className="font-mono text-muted text-sm mb-2">
+            <span className="text-green">$</span> cat how-it-works.md
+          </div>
+          <div className="border-t border-surface mb-10" />
+        </ScrollReveal>
 
-        <h2 className="font-mono text-2xl md:text-3xl font-bold text-off-white mb-12">
-          How It Works
-        </h2>
+        <ScrollReveal delay={0.1}>
+          <h2 className="font-mono text-2xl md:text-3xl font-bold text-off-white mb-12">
+            How It Works
+          </h2>
+        </ScrollReveal>
 
-        <div className="space-y-10">
+        <StaggerContainer stagger={0.15} className="space-y-10">
           {steps.map((step) => (
-            <div key={step.number} className="flex gap-6">
-              {/* Step number */}
-              <div className="shrink-0 font-mono text-orange text-3xl font-bold opacity-60">
-                {step.number}
-              </div>
+            <StaggerItem key={step.number}>
+              <motion.div
+                className="flex gap-6 group cursor-default"
+                whileHover={{ x: 4 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              >
+                {/* Step number */}
+                <div className="shrink-0 font-mono text-orange text-3xl font-bold opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                  {step.number}
+                </div>
 
-              <div>
-                <h3 className="font-mono text-lg font-bold text-off-white mb-2">
-                  {step.icon} {step.title}
-                </h3>
-                <p className="text-muted leading-relaxed">{step.description}</p>
-              </div>
-            </div>
+                <div>
+                  <h3 className="font-mono text-lg font-bold text-off-white mb-2">
+                    {step.icon} {step.title}
+                  </h3>
+                  <p className="text-muted leading-relaxed">{step.description}</p>
+                </div>
+              </motion.div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
-        <div className="border-t border-surface mt-12" />
+        <ScrollReveal delay={0.2}>
+          <div className="border-t border-surface mt-12" />
+        </ScrollReveal>
       </div>
     </section>
   )

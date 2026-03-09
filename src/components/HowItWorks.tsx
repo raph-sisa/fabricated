@@ -4,21 +4,18 @@ const steps = [
     title: 'Choose Your Build',
     description:
       'Pick a project that excites you — from LED circuits to sensor arrays to custom controllers. No experience needed.',
-    icon: '📐',
   },
   {
     number: '02',
     title: 'Build With AI',
     description:
       'Claude Code guides you through every step: wiring, coding, and debugging. Ask questions in plain English and get real answers.',
-    icon: '🤖',
   },
   {
     number: '03',
     title: 'Take It Home',
     description:
       'Walk away with a working device you built yourself — and the confidence to build whatever comes next.',
-    icon: '🏠',
   },
 ]
 
@@ -28,33 +25,36 @@ export default function HowItWorks() {
       <div className="max-w-3xl mx-auto">
         {/* Section header */}
         <div className="font-mono text-muted text-sm mb-2">
-          <span className="text-green">$</span> cat how-it-works.md
+          <span className="text-teal">$</span> cat how-it-works.md
         </div>
-        <div className="border-t border-surface mb-10" />
+        <div className="border-t border-surface-light mb-10" />
 
-        <h2 className="font-mono text-2xl md:text-3xl font-bold text-off-white mb-12">
+        <h2 className="font-display text-3xl md:text-4xl text-amber mb-12">
           How It Works
         </h2>
 
         <div className="space-y-10">
           {steps.map((step) => (
-            <div key={step.number} className="flex gap-6">
+            <div
+              key={step.number}
+              className="flex gap-6 group hover:-translate-y-[3px] transition-transform duration-200"
+            >
               {/* Step number */}
-              <div className="shrink-0 font-mono text-orange text-3xl font-bold opacity-60">
+              <div className="shrink-0 font-display text-4xl text-copper opacity-60 group-hover:opacity-100 transition-opacity">
                 {step.number}
               </div>
 
               <div>
-                <h3 className="font-mono text-lg font-bold text-off-white mb-2">
-                  {step.icon} {step.title}
+                <h3 className="font-mono text-base font-semibold text-off-white mb-2">
+                  {step.title}
                 </h3>
-                <p className="text-muted leading-relaxed">{step.description}</p>
+                <p className="text-muted text-sm leading-relaxed">{step.description}</p>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="border-t border-surface mt-12" />
+        <div className="border-t border-surface-light mt-12" />
       </div>
     </section>
   )
